@@ -16,11 +16,43 @@ Output: consonants should be ??,vowels should be ??
 
 NOTES: Don't create new string , Dont return anything ,you have been given two pointers ,copy values into those .
 */
-
+//time complexity O(n)
 #include <stddef.h>
 
 
-void count_vowels_and_consonants(char *str,int *consonants, int *vowels){
-
-
+void count_vowels_and_consonants(char *str, int *consonants, int *vowels){
+	if (str == NULL)
+	{
+		*consonants = 0;
+		*vowels = 0;
+	}
+	else
+	{
+		int  vowel_count = 0, conso_count = 0, i = 0, diff = 'a' - 'A';
+		while (str[i] != '\0')
+		{
+			if (str[i] >= 'A' && str[i] <= 'Z')
+				str[i] = str[i]+diff;
+			i++;
+		}
+		i = 0;
+		while (str[i] != '\0')
+		{
+			switch (str[i])
+			{
+			case 'a':
+			case 'e':
+			case 'i':
+			case 'o':
+			case 'u':vowel_count++;
+				break;
+			default:if (str[i] != ' ' && str[i]>='a' && str[i]<='z')
+				conso_count++;
+				break;
+			}
+			i++;
+		}
+		*vowels = vowel_count;
+		*consonants = conso_count;
+	}
 }
