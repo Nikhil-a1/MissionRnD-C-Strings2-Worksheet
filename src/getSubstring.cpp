@@ -17,7 +17,62 @@ original String
 #include <stddef.h>
 #include <stdlib.h>
 
-char * get_sub_string(char *str, int i, int j){
+char * get_sub_string(char *str, int i, int j)
+{
+	char* s;
+	int len = 0,k=0, size = 0;
+	if (str == NULL)
+		return s=NULL;
+	else if (i > j)
+		return s=NULL;
+	else
+	{
+		while (str[k] != '\0')
+		{
+			k++;
+			len++;
+		}
+		k = 0;
+		if (i >= 0 && j >= 0 && i < len && j < len && i < j)
+		{
+			size = j - i;
+			s = (char*)malloc(sizeof(char)*size);
+			for (; i <= j; i++)
+				s[k++] = str[i];
+			s[k] = '\0';
+			return s;
+		}
+		else if (i == j && i >= 0 && j >= 0 && i < len && j < len)
+		{
+			s = (char*)malloc(sizeof(char) * 2);
+			s[k++] = str[i];
+			s[k] = '\0';
+			return s;
+		}
+		else if (i < 0 && j < 0)
+			return s = NULL;
+		else if (i >= len && j>=len)
+			return s = NULL;
+		else if (i >= 0 && i < len && j < 0)
+		{
+			size = len - i;
+			s = (char*)malloc(sizeof(char)*size);
+			for (; i < len; i++)
+			{
+				*s = str[i];
+				s++;
+			}
+			*s = '\0';
+			return s;
+		}
+		else if (i < 0 && j >= 0 && j < len)
+		{
+			size = j;
+			s = (char*)malloc(sizeof(char)*size);
+			for (i = 0; i <= j; i++)
+				s[i] = str[i];
+			s[i] = '\0';
+		}
+	}
 
-    return NULL;
 }
